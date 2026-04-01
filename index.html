@@ -7,20 +7,23 @@
   <meta name="description" content="Personalized career direction insights through structured astrological chart analysis." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f6f9ff;
+      --bg: #f5f8ff;
       --white: #ffffff;
-      --text: #0e1b3d;
-      --muted: #4d5d86;
-      --primary: #1847b7;
-      --primary-dark: #0f3184;
+      --text: #081b52;
+      --text-strong: #061342;
+      --muted: #5b6991;
+      --primary: #1b4fd6;
+      --primary-dark: #10389f;
       --accent: #2dbb66;
       --border: #dfe8ff;
       --soft: #edf3ff;
-      --shadow: 0 20px 60px rgba(24, 71, 183, 0.12);
-      --radius: 22px;
+      --soft-2: #f4f7ff;
+      --shadow: 0 20px 60px rgba(16, 56, 159, 0.12);
+      --shadow-soft: 0 14px 38px rgba(16, 56, 159, 0.08);
+      --radius: 24px;
       --max: 1180px;
     }
 
@@ -31,7 +34,9 @@
       margin: 0;
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #f9fbff 0%, #eef4ff 100%);
+      background:
+        radial-gradient(circle at top left, rgba(27, 79, 214, 0.06), transparent 28%),
+        linear-gradient(180deg, #fbfcff 0%, #f2f6ff 100%);
       line-height: 1.6;
     }
 
@@ -48,33 +53,35 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(14px);
-      background: rgba(249, 251, 255, 0.84);
-      border-bottom: 1px solid rgba(223, 232, 255, 0.8);
+      background: rgba(250, 252, 255, 0.88);
+      border-bottom: 1px solid rgba(223, 232, 255, 0.85);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
-      gap: 16px;
+      gap: 18px;
+      padding: 18px 0;
     }
 
     .brand {
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
       color: var(--primary-dark);
+      white-space: nowrap;
     }
 
-    .brand span { color: var(--primary-dark); }
+    .brand span { color: var(--primary); }
 
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 24px;
       align-items: center;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
+      font-weight: 600;
     }
 
     .btn {
@@ -84,69 +91,75 @@
       gap: 10px;
       border-radius: 999px;
       padding: 14px 22px;
-      font-weight: 700;
+      font-weight: 800;
       transition: 0.25s ease;
       border: 1px solid transparent;
       cursor: pointer;
+      letter-spacing: -0.01em;
+      text-align: center;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, #2f63e5 100%);
-      color: white;
-      box-shadow: 0 18px 40px rgba(24, 71, 183, 0.24);
+      background: linear-gradient(135deg, var(--primary) 0%, #3a72ff 100%);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(27, 79, 214, 0.25);
     }
 
     .btn-primary:hover { transform: translateY(-2px); }
 
     .btn-secondary {
-      background: white;
+      background: rgba(255,255,255,0.95);
       color: var(--primary-dark);
       border-color: var(--border);
+      box-shadow: var(--shadow-soft);
     }
 
     .hero {
-      padding: 72px 0 44px;
+      padding: 66px 0 48px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 1.03fr 0.97fr;
       gap: 34px;
-      align-items: center;
+      align-items: start;
     }
 
     .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(24, 71, 183, 0.08);
+      display: block;
+      background: linear-gradient(180deg, #eef4ff 0%, #e7efff 100%);
       color: var(--primary-dark);
-      padding: 10px 14px;
+      padding: 14px 18px;
       border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      box-sizing: border-box;
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      border: 1px solid #dde7ff;
+      box-shadow: var(--shadow-soft);
     }
 
     .eyebrow-full {
       grid-column: 1 / -1;
       width: 100%;
+      margin-bottom: 8px;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 5vw, 4.7rem);
-      line-height: 1.03;
-      letter-spacing: -0.04em;
+      font-size: clamp(2.35rem, 5vw, 4.85rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
       margin: 0 0 18px;
-      color: var(--text);
+      color: var(--text-strong);
+      font-weight: 900;
+      max-width: 760px;
     }
 
     .hero p {
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       color: var(--muted);
       max-width: 680px;
-      margin: 0 0 24px;
+      margin: 0 0 26px;
     }
 
     .hero-card,
@@ -162,32 +175,43 @@
 
     .hero-card {
       border-radius: calc(var(--radius) + 6px);
-      padding: 28px;
+      padding: 30px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+      min-height: 100%;
     }
 
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: 240px;
+      height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(24, 71, 183, 0.14) 0%, rgba(24, 71, 183, 0) 70%);
-      right: -60px;
-      top: -60px;
+      background: radial-gradient(circle, rgba(27, 79, 214, 0.14) 0%, rgba(27, 79, 214, 0) 72%);
+      right: -70px;
+      top: -65px;
     }
 
     .card-label {
+      position: relative;
+      z-index: 1;
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--primary);
       margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+    }
+
+    .hero-card h3 {
+      margin: 0;
+      font-size: 1.68rem;
+      line-height: 1.22;
+      letter-spacing: -0.03em;
       position: relative;
       z-index: 1;
+      color: var(--text-strong);
     }
 
     .info-list {
@@ -200,46 +224,50 @@
 
     .info-item {
       padding: 14px 16px;
-      background: white;
+      background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
       border-radius: 16px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text);
+      box-shadow: 0 10px 26px rgba(16, 56, 159, 0.06);
     }
 
     .section { padding: 34px 0; }
     .section-lg { padding: 74px 0; }
 
     .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-size: clamp(1.9rem, 3vw, 2.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       margin: 0 0 14px;
+      color: var(--text-strong);
     }
 
     .section-sub {
       max-width: 760px;
       color: var(--muted);
-      margin: 0 0 28px;
+      margin: 0 0 30px;
       font-size: 1.03rem;
     }
 
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 26px;
+      gap: 24px;
       align-items: start;
     }
 
     .panel {
       border-radius: var(--radius);
       padding: 28px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
     }
 
     .panel h3 {
       margin: 0 0 14px;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
+      font-size: 1.32rem;
+      letter-spacing: -0.03em;
+      color: var(--text-strong);
     }
 
     .bullet-list {
@@ -279,23 +307,37 @@
       border-radius: 22px;
       padding: 24px;
       height: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
     .feature span {
       display: inline-flex;
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       align-items: center;
       justify-content: center;
       border-radius: 14px;
       background: var(--soft);
       color: var(--primary-dark);
-      font-weight: 800;
+      font-weight: 900;
       margin-bottom: 14px;
     }
 
-    .feature h4, .step h4, .price-title { margin: 0 0 10px; }
-    .feature p, .step p, .price-note, .muted-small, .footer-text { color: var(--muted); }
+    .feature h4,
+    .step h4,
+    .price-title {
+      margin: 0 0 10px;
+      color: var(--text-strong);
+      letter-spacing: -0.02em;
+    }
+
+    .feature p,
+    .step p,
+    .price-note,
+    .muted-small,
+    .footer-text {
+      color: var(--muted);
+    }
 
     .steps {
       display: grid;
@@ -318,8 +360,9 @@
       border-radius: 50%;
       background: var(--primary);
       color: white;
-      font-weight: 800;
+      font-weight: 900;
       margin-bottom: 16px;
+      box-shadow: 0 10px 24px rgba(27, 79, 214, 0.22);
     }
 
     .pricing {
@@ -332,11 +375,13 @@
       border-radius: 24px;
       padding: 28px;
       position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
     .price-card.featured {
       border: 2px solid var(--primary);
       transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(27, 79, 214, 0.14);
     }
 
     .tag {
@@ -345,22 +390,27 @@
       right: 18px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(24, 71, 183, 0.1);
+      background: rgba(27, 79, 214, 0.1);
       color: var(--primary-dark);
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .cta {
       text-align: center;
       border-radius: 30px;
-      padding: 42px 24px;
+      padding: 46px 26px;
+      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
     }
 
     .footer {
-      padding: 28px 0 50px;
+      padding: 20px 0 42px;
       text-align: center;
       font-size: 0.95rem;
+    }
+
+    .footer-text {
+      color: var(--muted);
     }
 
     .hero-actions,
@@ -376,6 +426,7 @@
       margin-top: 12px;
     }
 
+    /* Tablet */
     @media (max-width: 980px) {
       .hero-grid,
       .split,
@@ -386,8 +437,218 @@
       }
 
       .nav-links { display: none; }
-      .price-card.featured { transform: none; }
-      .hero { padding-top: 42px; }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+
+    /* Mobile Premium Layout */
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 24px), var(--max));
+      }
+
+      .nav-inner {
+        padding: 14px 0;
+        gap: 12px;
+      }
+
+      .brand {
+        font-size: 0.98rem;
+        line-height: 1.1;
+      }
+
+      .nav-inner .btn {
+        padding: 12px 16px;
+        font-size: 0.92rem;
+        min-width: 148px;
+      }
+
+      .hero {
+        padding: 22px 0 28px;
+      }
+
+      .hero-grid {
+        gap: 18px;
+      }
+
+      .eyebrow {
+        font-size: 0.88rem;
+        line-height: 1.55;
+        padding: 12px 16px;
+        border-radius: 22px;
+        margin-bottom: 2px;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 10vw, 3.25rem);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+        margin: 0 0 16px;
+        max-width: 100%;
+      }
+
+      .hero p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .hero-actions .btn,
+      .cta-actions .btn {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 0.96rem;
+      }
+
+      .hero-card,
+      .panel,
+      .feature,
+      .step,
+      .price-card,
+      .cta {
+        border-radius: 22px;
+      }
+
+      .hero-card {
+        padding: 22px 18px;
+      }
+
+      .hero-card h3 {
+        font-size: 1.28rem;
+        line-height: 1.3;
+      }
+
+      .card-label {
+        font-size: 0.74rem;
+        margin-bottom: 10px;
+      }
+
+      .info-list {
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .info-item {
+        padding: 12px 13px;
+        font-size: 0.93rem;
+        line-height: 1.45;
+        border-radius: 14px;
+      }
+
+      .section-lg {
+        padding: 42px 0;
+      }
+
+      .section-title {
+        font-size: 1.72rem;
+        line-height: 1.12;
+        margin-bottom: 12px;
+      }
+
+      .section-sub {
+        font-size: 0.96rem;
+        line-height: 1.75;
+        margin-bottom: 22px;
+      }
+
+      .panel,
+      .feature,
+      .step,
+      .price-card {
+        padding: 20px 18px;
+      }
+
+      .panel h3,
+      .price-title,
+      .feature h4,
+      .step h4 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+      }
+
+      .bullet-list,
+      .steps,
+      .pricing,
+      .split,
+      .grid-3 {
+        gap: 14px;
+      }
+
+      .feature span {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+
+      .step-number {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+
+      .tag {
+        position: static;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+
+      .cta {
+        padding: 30px 18px;
+      }
+
+      .muted-small {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+
+      .footer {
+        padding: 14px 0 34px;
+      }
+
+      .footer-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+    }
+
+    /* Small Mobile */
+    @media (max-width: 390px) {
+      .brand {
+        font-size: 0.9rem;
+      }
+
+      .nav-inner .btn {
+        min-width: 132px;
+        padding: 11px 14px;
+        font-size: 0.88rem;
+      }
+
+      h1 {
+        font-size: clamp(1.95rem, 10.4vw, 2.9rem);
+      }
+
+      .eyebrow {
+        font-size: 0.84rem;
+      }
     }
   </style>
 </head>
@@ -425,9 +686,7 @@
 
         <div class="hero-card">
           <div class="card-label">The real reason people come here</div>
-          <h3 style="margin:0; font-size:1.7rem; line-height:1.2; letter-spacing:-0.03em; position:relative; z-index:1;">
-            The cost of wrong direction is not just confusion — it is lost time, delayed growth and blocked potential
-          </h3>
+          <h3>The cost of wrong direction is not just confusion — it is lost time, delayed growth and blocked potential</h3>
 
           <div class="info-list">
             <div class="info-item">Get clarity on suitable and unsuitable career directions</div>
@@ -453,6 +712,7 @@
             That is why Career Logic exists: to help you identify the path where your energy, strengths, and growth potential can work together instead of against each other.
           </p>
         </div>
+
         <div class="panel">
           <h3>Who Is Career Logic Designed For?</h3>
           <ul class="bullet-list">
@@ -470,17 +730,20 @@
         <p class="section-sub">
           Career Logic is not just a report. It is a structured clarity tool for people who do not want to waste years in trial-and-error. It helps you understand where your natural qualities can create stronger results.
         </p>
+
         <div class="grid-3">
           <div class="feature">
             <span>01</span>
             <h4>Clarity</h4>
             <p>See why certain paths feel draining, delayed, or unnatural — and which paths may suit you better.</p>
           </div>
+
           <div class="feature">
             <span>02</span>
             <h4>Decision Support</h4>
             <p>Use the report to think more clearly about career choice, switch timing, growth, and role fit.</p>
           </div>
+
           <div class="feature">
             <span>03</span>
             <h4>Confidence</h4>
@@ -494,22 +757,26 @@
       <div class="container">
         <h2 class="section-title">How it works</h2>
         <p class="section-sub">A simple step-by-step process designed to give you a clear and personalized direction report.</p>
+
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
             <h4>Share your birth details</h4>
             <p style="color: var(--muted); margin: 0;">Provide your date, time, and place of birth through the form.</p>
           </div>
+
           <div class="step">
             <div class="step-number">2</div>
             <h4>Structured chart analysis</h4>
             <p style="color: var(--muted); margin: 0;">Your astrological data is processed through multiple chart layers.</p>
           </div>
+
           <div class="step">
             <div class="step-number">3</div>
             <h4>Personalized insight report</h4>
             <p style="color: var(--muted); margin: 0;">You receive focused insights about career, strengths, and growth patterns.</p>
           </div>
+
           <div class="step">
             <div class="step-number">4</div>
             <h4>Optional consultation</h4>
@@ -523,6 +790,7 @@
       <div class="container">
         <h2 class="section-title">Choose your level of clarity</h2>
         <p class="section-sub">Two simple offers. One to begin. One to go deep.</p>
+
         <div class="pricing">
           <div class="price-card">
             <h3 class="price-title">Free Starter Report</h3>
@@ -548,6 +816,7 @@
             </ul>
           </div>
         </div>
+
         <div class="panel" style="margin-top:20px;">
           <h3>Delivery & accuracy</h3>
           <ul class="bullet-list">
@@ -577,6 +846,7 @@
             <li>strength and support across houses and planets</li>
           </ul>
         </div>
+
         <div class="panel">
           <h3>Where you can find us?</h3>
           <ul class="bullet-list">
