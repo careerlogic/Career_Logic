@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f5f8ff;
@@ -40,8 +41,15 @@
       line-height: 1.6;
     }
 
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
     .container {
       width: min(calc(100% - 32px), var(--max));
@@ -73,7 +81,9 @@
       white-space: nowrap;
     }
 
-    .brand span { color: var(--primary); }
+    .brand span {
+      color: var(--primary);
+    }
 
     .nav-links {
       display: flex;
@@ -105,7 +115,9 @@
       box-shadow: 0 16px 36px rgba(27, 79, 214, 0.25);
     }
 
-    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
 
     .btn-secondary {
       background: rgba(255,255,255,0.95);
@@ -232,8 +244,13 @@
       box-shadow: 0 10px 26px rgba(16, 56, 159, 0.06);
     }
 
-    .section { padding: 34px 0; }
-    .section-lg { padding: 74px 0; }
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-lg {
+      padding: 74px 0;
+    }
 
     .section-title {
       font-size: clamp(1.9rem, 3vw, 2.9rem);
@@ -284,7 +301,9 @@
       color: var(--muted);
     }
 
-    .bullet-list li strong { color: var(--text); }
+    .bullet-list li strong {
+      color: var(--text);
+    }
 
     .bullet-list li::before {
       content: "";
@@ -295,6 +314,22 @@
       position: absolute;
       left: 0;
       top: 10px;
+    }
+
+    .contact-list li {
+      line-height: 1.7;
+    }
+
+    .contact-list a {
+      color: var(--primary);
+      font-weight: 700;
+      word-break: break-word;
+      margin-left: 4px;
+    }
+
+    .contact-list a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
     }
 
     .grid-3 {
@@ -426,7 +461,6 @@
       margin-top: 12px;
     }
 
-    /* Tablet */
     @media (max-width: 980px) {
       .hero-grid,
       .split,
@@ -436,7 +470,9 @@
         grid-template-columns: 1fr;
       }
 
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+      }
 
       .hero {
         padding-top: 42px;
@@ -447,7 +483,6 @@
       }
     }
 
-    /* Mobile Premium Layout */
     @media (max-width: 640px) {
       .container {
         width: min(calc(100% - 24px), var(--max));
@@ -611,6 +646,12 @@
         margin-bottom: 12px;
       }
 
+      .contact-list a {
+        display: inline-block;
+        margin-left: 0;
+        margin-top: 4px;
+      }
+
       .cta {
         padding: 30px 18px;
       }
@@ -630,7 +671,6 @@
       }
     }
 
-    /* Small Mobile */
     @media (max-width: 390px) {
       .brand {
         font-size: 0.9rem;
@@ -652,17 +692,22 @@
     }
   </style>
 </head>
+
 <body>
   <header class="nav">
     <div class="container nav-inner">
       <a href="#top" class="brand">Career <span>Logic</span></a>
+
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#how-it-works">How it works</a>
         <a href="#offers">Offers</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Your Report</a>
+
+      <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
+        Get Your Report
+      </a>
     </div>
   </header>
 
@@ -675,11 +720,15 @@
 
         <div>
           <h1>What if an Indian cricket legend had spent his life as only a ticket collector, never discovering the field where he truly belonged?</h1>
+
           <p>
             Many people do not struggle because they lack talent. They struggle because they are trying to grow in the wrong direction. Career Logic helps you understand your natural strengths, suitable path, and deeper growth pattern so you can make career decisions with more clarity and less wasted effort.
           </p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Start With Free Report</a>
+            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
+              Start With Free Report
+            </a>
             <a class="btn btn-secondary" href="#about">Learn More</a>
           </div>
         </div>
@@ -849,10 +898,23 @@
 
         <div class="panel">
           <h3>Where you can find us?</h3>
-          <ul class="bullet-list">
-            <li>Instagram: @career_logic09</li>
-            <li>Email: careerlogic.ai09@gmail.com</li>
-            <li>WhatsApp/Phone: 9607399090</li>
+          <ul class="bullet-list contact-list">
+            <li>
+              Instagram:
+              <a href="https://instagram.com/career_logic09" target="_blank" rel="noopener noreferrer">@career_logic09</a>
+            </li>
+            <li>
+              Email:
+              <a href="mailto:careerlogic.ai09@gmail.com">careerlogic.ai09@gmail.com</a>
+            </li>
+            <li>
+              WhatsApp:
+              <a href="https://wa.me/919607399090?text=Hello%20Career%20Logic,%20I%20want%20to%20know%20more%20about%20the%20report." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            </li>
+            <li>
+              Phone:
+              <a href="tel:+919607399090">9607399090</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -862,9 +924,13 @@
       <div class="container">
         <div class="cta">
           <h2 class="section-title" style="margin-bottom: 10px;">Stop guessing. Start with clarity.</h2>
-          <p class="section-sub" style="margin: 0 auto 22px;">Take the first step with a premium structured report designed to help you understand where you may truly fit and grow.</p>
+          <p class="section-sub" style="margin: 0 auto 22px;">
+            Take the first step with a premium structured report designed to help you understand where you may truly fit and grow.
+          </p>
           <div class="cta-actions" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Started Now</a>
+            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
+              Get Started Now
+            </a>
           </div>
           <div class="muted-small" style="margin-top:16px;">
             Premium PDF delivery within 24 hours after payment confirmation and correct birth details.
