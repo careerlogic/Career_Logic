@@ -7,7 +7,7 @@
   <meta name="description" content="Personalized career direction insights through structured astrological chart analysis." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -33,7 +33,7 @@
 
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(27, 79, 214, 0.06), transparent 28%),
@@ -44,11 +44,6 @@
     a {
       text-decoration: none;
       color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
     }
 
     .container {
@@ -75,22 +70,20 @@
 
     .brand {
       font-weight: 900;
-      font-size: 2.7rem;
+      font-size: 2.45rem;
       letter-spacing: -0.04em;
       color: var(--primary-dark);
       white-space: nowrap;
     }
 
-    .brand span {
-      color: var(--primary);
-    }
+    .brand span { color: var(--primary); }
 
     .nav-links {
       display: flex;
       gap: 24px;
       align-items: center;
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       font-weight: 600;
     }
 
@@ -100,14 +93,14 @@
       justify-content: center;
       gap: 8px;
       border-radius: 999px;
-      padding: 11px 18px;
+      padding: 12px 20px;
       font-weight: 800;
       transition: 0.25s ease;
       border: 1px solid transparent;
       cursor: pointer;
       letter-spacing: -0.01em;
       text-align: center;
-      font-size: 0.90rem;
+      font-size: 0.92rem;
     }
 
     .btn-primary {
@@ -116,7 +109,8 @@
       box-shadow: 0 16px 36px rgba(27, 79, 214, 0.25);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-secondary:hover {
       transform: translateY(-2px);
     }
 
@@ -127,42 +121,41 @@
       box-shadow: var(--shadow-soft);
     }
 
+    .section { padding: 34px 0; }
+    .section-lg { padding: 76px 0; }
+
     .hero {
-      padding: 66px 0 48px;
+      padding: 72px 0 48px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.03fr 0.97fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 34px;
-      align-items: start;
+      align-items: center;
     }
 
     .eyebrow {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: linear-gradient(180deg, #eef4ff 0%, #e7efff 100%);
       color: var(--primary-dark);
-      padding: 14px 18px;
+      padding: 12px 18px;
       border-radius: 999px;
-      font-size: 0.98rem;
+      font-size: 0.94rem;
       font-weight: 800;
-      line-height: 1.55;
-      margin-bottom: 10px;
+      line-height: 1.5;
+      margin-bottom: 18px;
       border: 1px solid #dde7ff;
       box-shadow: var(--shadow-soft);
     }
 
-    .eyebrow-full {
-      grid-column: 1 / -1;
-      width: 100%;
-      margin-bottom: 8px;
-    }
-
     h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.1rem, 5vw, 4.4rem);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+      font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
       margin: 0 0 18px;
       color: var(--text-strong);
       font-weight: 700;
@@ -170,73 +163,85 @@
     }
 
     .hero p {
-      font-size: 1.06rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      max-width: 680px;
-      margin: 0 0 26px;
+      max-width: 660px;
+      margin: 0 0 24px;
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .mini-note {
+      margin-top: 12px;
+      font-size: 0.93rem;
+      color: var(--muted);
     }
 
     .hero-card,
-    .panel,
     .feature,
-    .step,
+    .panel,
     .price-card,
-    .cta {
+    .cta,
+    .marathi-strip {
       background: var(--white);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
+      border-radius: 28px;
     }
 
     .hero-card {
-      border-radius: calc(var(--radius) + 6px);
       padding: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
-      min-height: 100%;
     }
 
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 240px;
-      height: 240px;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(27, 79, 214, 0.14) 0%, rgba(27, 79, 214, 0) 72%);
-      right: -70px;
-      top: -65px;
+      background: radial-gradient(circle, rgba(27,79,214,0.14) 0%, rgba(27,79,214,0) 72%);
+      right: -80px;
+      top: -80px;
     }
 
     .card-label {
       position: relative;
       z-index: 1;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 900;
       color: var(--primary);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
     }
 
     .hero-card h3 {
-      margin: 0;
-      font-size: 1.68rem;
-      line-height: 1.22;
-      letter-spacing: -0.03em;
       position: relative;
       z-index: 1;
+      margin: 0 0 16px;
+      font-size: 1.65rem;
+      line-height: 1.2;
       color: var(--text-strong);
+      letter-spacing: -0.03em;
     }
 
-    .info-list {
-      display: grid;
-      gap: 14px;
-      margin: 22px 0 0;
+    .hero-points {
       position: relative;
       z-index: 1;
+      display: grid;
+      gap: 12px;
     }
 
-    .info-item {
+    .hero-points div {
       padding: 14px 16px;
       background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
@@ -246,104 +251,36 @@
       box-shadow: 0 10px 26px rgba(16, 56, 159, 0.06);
     }
 
-    .section {
-      padding: 34px 0;
-    }
-
-    .section-lg {
-      padding: 74px 0;
-    }
-
     .section-title {
-      font-size: clamp(1.9rem, 3vw, 2.9rem);
+      font-size: clamp(1.9rem, 3vw, 3rem);
       line-height: 1.08;
       letter-spacing: -0.04em;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: var(--text-strong);
     }
 
     .section-sub {
-      max-width: 760px;
+      max-width: 700px;
       color: var(--muted);
       margin: 0 0 30px;
-      font-size: 1.03rem;
+      font-size: 1.02rem;
     }
 
-    .split {
+    .grid-3,
+    .pricing {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .panel {
-      border-radius: var(--radius);
-      padding: 28px;
-      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
-    }
-
-    .panel h3 {
-      margin: 0 0 14px;
-      font-size: 1.32rem;
-      letter-spacing: -0.03em;
-      color: var(--text-strong);
-    }
-
-    .bullet-list {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: grid;
-      gap: 14px;
-    }
-
-    .bullet-list li {
-      padding-left: 18px;
-      position: relative;
-      color: var(--muted);
-    }
-
-    .bullet-list li strong {
-      color: var(--text);
-    }
-
-    .bullet-list li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-      position: absolute;
-      left: 0;
-      top: 10px;
-    }
-
-    .contact-list li {
-      line-height: 1.7;
-    }
-
-    .contact-list a {
-      color: var(--primary);
-      font-weight: 700;
-      word-break: break-word;
-      margin-left: 4px;
-    }
-
-    .contact-list a:hover {
-      color: var(--primary-dark);
-      text-decoration: underline;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    .feature {
-      border-radius: 22px;
-      padding: 24px;
-      height: 100%;
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .pricing { grid-template-columns: repeat(2, 1fr); }
+
+    .feature,
+    .panel,
+    .price-card,
+    .cta,
+    .marathi-strip {
+      padding: 28px;
       background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     }
 
@@ -361,7 +298,7 @@
     }
 
     .feature h4,
-    .step h4,
+    .panel h3,
     .price-title {
       margin: 0 0 10px;
       color: var(--text-strong);
@@ -369,50 +306,69 @@
     }
 
     .feature p,
-    .step p,
+    .panel p,
     .price-note,
-    .muted-small,
-    .footer-text {
+    .footer-text,
+    .muted-small {
       color: var(--muted);
     }
 
-    .steps {
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
-    .step {
-      border-radius: 22px;
-      padding: 24px;
-      background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+    .bullet-list li {
+      padding-left: 18px;
+      position: relative;
+      color: var(--muted);
     }
 
-    .step-number {
-      width: 42px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .bullet-list li strong { color: var(--text); }
+
+    .bullet-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--primary);
-      color: white;
-      font-weight: 900;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 24px rgba(27, 79, 214, 0.22);
+      position: absolute;
+      left: 0;
+      top: 10px;
     }
 
-    .pricing {
+    .simple-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
     }
 
-    .price-card {
-      border-radius: 24px;
-      padding: 28px;
-      position: relative;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    .marathi-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+      background: linear-gradient(180deg, #fafdff 0%, #f4f8ff 100%);
+    }
+
+    .marathi-title {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.45;
+      color: var(--text-strong);
+      margin: 0 0 10px;
+    }
+
+    .marathi-text {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin: 0;
     }
 
     .price-card.featured {
@@ -422,22 +378,31 @@
     }
 
     .tag {
-      position: absolute;
-      top: 18px;
-      right: 18px;
+      display: inline-flex;
       padding: 8px 12px;
       border-radius: 999px;
       background: rgba(27, 79, 214, 0.1);
       color: var(--primary-dark);
       font-size: 0.82rem;
       font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-links a {
+      color: var(--primary);
+      font-weight: 700;
+      word-break: break-word;
     }
 
     .cta {
       text-align: center;
       border-radius: 30px;
-      padding: 46px 26px;
-      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
     }
 
     .footer {
@@ -446,43 +411,18 @@
       font-size: 0.95rem;
     }
 
-    .footer-text {
-      color: var(--muted);
-    }
-
-    .hero-actions,
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .muted-small {
-      font-size: 0.92rem;
-      margin-top: 12px;
-    }
-
     @media (max-width: 980px) {
       .hero-grid,
-      .split,
       .grid-3,
-      .steps,
-      .pricing {
+      .pricing,
+      .simple-grid,
+      .marathi-strip {
         grid-template-columns: 1fr;
       }
 
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .price-card.featured {
-        transform: none;
-      }
+      .nav-links { display: none; }
+      .price-card.featured { transform: none; }
+      .hero { padding-top: 44px; }
     }
 
     @media (max-width: 640px) {
@@ -496,94 +436,62 @@
       }
 
       .brand {
-        font-size: 1.9rem;
-        line-height: 1.1
+        font-size: 1.18rem;
+        line-height: 1.1;
       }
 
       .nav-inner .btn {
         padding: 10px 14px;
-        font-size: 0.86rem;
-        min-width: 124px;
+        font-size: 0.84rem;
+        min-width: 122px;
       }
 
       .hero {
-        padding: 22px 0 28px;
-      }
-
-      .hero-grid {
-        gap: 18px;
+        padding: 24px 0 30px;
       }
 
       .eyebrow {
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         line-height: 1.55;
-        padding: 12px 16px;
-        border-radius: 22px;
-        margin-bottom: 2px;
+        padding: 11px 14px;
       }
 
       h1 {
-        font-family: 'Poppins', sans-serif;
-        font-size: clamp(1.9rem, 8.4vw, 2.7rem);
-        line-height: 1.18;
-        letter-spacing: -0.01em;
-        margin: 0 0 16px;
-        max-width: 100%;
+        font-size: clamp(1.95rem, 8.5vw, 2.8rem);
+        line-height: 1.14;
+        margin-bottom: 14px;
       }
 
-      .hero p {
-        font-size: 0.98rem;
-        line-height: 1.75;
-        margin-bottom: 20px;
+      .hero p,
+      .section-sub,
+      .marathi-text {
+        font-size: 0.96rem;
+        line-height: 1.8;
       }
 
       .hero-actions,
       .cta-actions {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
       }
 
       .hero-actions .btn,
       .cta-actions .btn {
         width: 100%;
-        padding: 14px 18px;
-        font-size: 0.96rem;
       }
 
       .hero-card,
-      .panel,
       .feature,
-      .step,
+      .panel,
       .price-card,
-      .cta {
+      .cta,
+      .marathi-strip {
+        padding: 20px 18px;
         border-radius: 22px;
-      }
-
-      .hero-card {
-        padding: 22px 18px;
       }
 
       .hero-card h3 {
         font-size: 1.28rem;
-        line-height: 1.3;
-      }
-
-      .card-label {
-        font-size: 0.74rem;
-        margin-bottom: 10px;
-      }
-
-      .info-list {
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .info-item {
-        padding: 12px 13px;
-        font-size: 0.93rem;
-        line-height: 1.45;
-        border-radius: 14px;
       }
 
       .section-lg {
@@ -592,120 +500,33 @@
 
       .section-title {
         font-size: 1.72rem;
-        line-height: 1.12;
-        margin-bottom: 12px;
-      }
-
-      .section-sub {
-        font-size: 0.96rem;
-        line-height: 1.75;
-        margin-bottom: 22px;
-      }
-
-      .panel,
-      .feature,
-      .step,
-      .price-card {
-        padding: 20px 18px;
-      }
-
-      .panel h3,
-      .price-title,
-      .feature h4,
-      .step h4 {
-        font-size: 1.1rem;
-        line-height: 1.3;
-      }
-
-      .bullet-list,
-      .steps,
-      .pricing,
-      .split,
-      .grid-3 {
-        gap: 14px;
-      }
-
-      .feature span {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-      }
-
-      .step-number {
-        width: 38px;
-        height: 38px;
-        margin-bottom: 12px;
-        font-size: 0.95rem;
-      }
-
-      .price-card.featured {
-        transform: none;
-      }
-
-      .tag {
-        position: static;
-        display: inline-block;
-        margin-bottom: 12px;
-      }
-
-      .contact-list a {
-        display: inline-block;
-        margin-left: 0;
-        margin-top: 4px;
-      }
-
-      .cta {
-        padding: 30px 18px;
-      }
-
-      .muted-small {
-        font-size: 0.88rem;
-        line-height: 1.6;
       }
 
       .footer {
         padding: 14px 0 34px;
       }
-
-      .footer-text {
-        font-size: 0.9rem;
-        line-height: 1.7;
-      }
     }
 
     @media (max-width: 390px) {
-      .brand {
-        font-size: 1.36rem;
-      }
-
+      .brand { font-size: 1.05rem; }
       .nav-inner .btn {
-        min-width: 116px;
+        min-width: 114px;
         padding: 9px 12px;
-        font-size: 0.82rem;
-      }
-
-      h1 {
-        font-size: clamp(1.8rem, 10vw, 2.5rem);
-      }
-
-      .eyebrow {
-        font-size: 0.84rem;
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
-
 <body>
   <header class="nav">
     <div class="container nav-inner">
       <a href="#top" class="brand">Career <span>Logic</span></a>
 
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#how-it-works">How it works</a>
+        <a href="#why">Audience</a>
+        <a href="#process">Process</a>
         <a href="#offers">Offers</a>
-        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
@@ -717,122 +538,85 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="eyebrow eyebrow-full">
-          A career clarity experience for those who do not want to lose years in the wrong direction.
-        </div>
-
         <div>
-          <h1>What if an Indian cricket legend had spent his life as only a ticket collector, never discovering the field where he truly belonged?</h1>
-
-          <p>
-            Many people do not struggle because they lack talent. They struggle because they are trying to grow in the wrong direction. Career Logic helps you understand your natural strengths, suitable path, and deeper growth pattern so you can make career decisions with more clarity and less wasted effort.
-          </p>
-
+          <div class="eyebrow">Career clarity, made simple</div>
+          <h1>Find the work direction that fits you — before you lose years in the wrong one.</h1>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
-              Start With Free Report
-            </a>
-            <a class="btn btn-secondary" href="#about">Learn More</a>
+            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Start With Free Report</a>
+            <a class="btn btn-secondary" href="#why">Learn More</a>
           </div>
+          <div class="mini-note">Simple language. Premium report. Personalized direction.</div>
         </div>
 
         <div class="hero-card">
-          <div class="card-label">The real reason people come here</div>
-          <h3>The cost of wrong direction is not just confusion — it is lost time, delayed growth and blocked potential</h3>
-
-          <div class="info-list">
-            <div class="info-item">Get clarity on suitable and unsuitable career directions</div>
-            <div class="info-item">Understand your real strengths before making major decisions</div>
-            <div class="info-item">Reduce confusion around growth, money, and timing</div>
-            <div class="info-item">Move with more confidence instead of guesswork</div>
-            <div class="info-item">Natural strengths and effort style</div>
-            <div class="info-item">Leadership, money, and growth tendencies</div>
-            <div class="info-item">Optional deeper consultation support</div>
+          <div class="card-label">Why people choose Career Logic</div>
+          <div class="hero-points">
+            <div>तुम्हाला तुमची नैसर्गिक ताकद, योग्य दिशा आणि growth ची क्षमता समजून घेण्यास मदत करते.</div>
+            <div>तुमच्या मेहनतीला योग्य दिशा मिळवून meaningful growth कडे नेण्याचा प्रयत्न करते.</div>
+            <div>यामुळे चुकीच्या दिशेत वर्षे वाया न घालवता योग्य निर्णय अधिक स्पष्टपणे घेता येतात.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section-lg" id="about">
-      <div class="container split">
-        <div class="panel">
-          <h3>The real problem most people never identify</h3>
-          <p style="color: var(--muted); margin:0 0 16px;">
-            People often blame themselves when progress feels slow. But many times, the deeper issue is not weak effort — it is wrong alignment. A person can work hard for years and still feel blocked if they are pushing themselves in a direction that does not match their natural design.
-          </p>
-          <p style="color: var(--muted); margin:0;">
-            That is why Career Logic exists: to help you identify the path where your energy, strengths, and growth potential can work together instead of against each other.
-          </p>
-        </div>
+    <section class="section-lg" id="why">
+      <div class="container">
+        <h2 class="section-title">Career Logic कोणासाठी उपयुक्त आहे?</h2>
+        <p class="section-sub">
+          Most people are not stuck because they are lazy. They are stuck because they are trying hard in a direction that does not fit them.
+        </p>
 
-        <div class="panel">
-          <h3>Who Is Career Logic Designed For?</h3>
-          <ul class="bullet-list">
-            <li>Students who want to discover the career path that truly fits their strengths</li>
-            <li>Working professionals seeking growth, clarity, and their next right move</li>
-            <li>Business owners looking for sharper direction, expansion, and greater potential</li>
-          </ul>
+        <div class="simple-grid">
+          <div class="panel">
+            <span>01</span>
+            <h4>Students</h4>
+            <p>Career Logic विद्यार्थ्यांना 12वी नंतर योग्य graduation direction निवडण्यापासून ते graduation नंतर suitable government exams, aligned competitive paths आणि career-focused courses ओळखण्यापर्यंत स्पष्ट आणि structured guidance देते.</p>
+          </div>
+
+          <div class="panel">
+            <span>02</span>
+            <h4>Working professionals</h4>
+            <p>Career Logic working professionals ना त्यांच्या strengths, career pattern आणि growth potential नुसार कोणता domain अधिक suitable आहे, role change आवश्यक आहे का, आणि कोणता role त्यांना अधिक friction-free growth आणि stronger returns देऊ शकतो याबाबत स्पष्ट, सखोल आणि structured guidance देते.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section-lg">
-      <div class="container">
-        <h2 class="section-title">A premium solution for a deeply personal problem</h2>
-        <p class="section-sub">
-          Career Logic is not just a report. It is a structured clarity tool for people who do not want to waste years in trial-and-error. It helps you understand where your natural qualities can create stronger results.
-        </p>
-
-        <div class="grid-3">
-          <div class="feature">
-            <span>01</span>
-            <h4>Clarity</h4>
-            <p>See why certain paths feel draining, delayed, or unnatural — and which paths may suit you better.</p>
-          </div>
-
-          <div class="feature">
-            <span>02</span>
-            <h4>Decision Support</h4>
-            <p>Use the report to think more clearly about career choice, switch timing, growth, and role fit.</p>
-          </div>
-
-          <div class="feature">
-            <span>03</span>
-            <h4>Confidence</h4>
-            <p>Move forward with more conviction because your choices are based on a deeper understanding of yourself.</p>
-          </div>
+      <div class="container marathi-strip">
+        <div>
+          <p class="marathi-title">क्षमता आहे, पण दिशा नाही</p>
+          <p class="marathi-text">
+            अनेक लोकांमध्ये क्षमता असते, पण दिशा स्पष्ट नसते. Career Logic तुमच्या गुणांनुसार, काम करण्याच्या पद्धतीनुसार आणि वाढीच्या शक्यतांनुसार मार्ग समजून घेण्यास मदत करते.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="section-lg" id="how-it-works">
+    <section class="section-lg" id="process">
       <div class="container">
         <h2 class="section-title">How it works</h2>
-        <p class="section-sub">A simple step-by-step process designed to give you a clear and personalized direction report.</p>
+        <p class="section-sub">A short process designed to keep things easy and premium.</p>
 
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h4>Share your birth details</h4>
-            <p style="color: var(--muted); margin: 0;">Provide your date, time, and place of birth through the form.</p>
+        <div class="simple-grid">
+          <div class="panel">
+            <h3>Step 1</h3>
+            <p>Share your birth date, birth time, and birth place through the form.</p>
           </div>
 
-          <div class="step">
-            <div class="step-number">2</div>
-            <h4>Structured chart analysis</h4>
-            <p style="color: var(--muted); margin: 0;">Your astrological data is processed through multiple chart layers.</p>
+          <div class="panel">
+            <h3>Step 2</h3>
+            <p>Your charts is studied through multiple layers focused on career and growth.</p>
           </div>
 
-          <div class="step">
-            <div class="step-number">3</div>
-            <h4>Personalized insight report</h4>
-            <p style="color: var(--muted); margin: 0;">You receive focused insights about career, strengths, and growth patterns.</p>
+          <div class="panel">
+            <h3>Step 3</h3>
+            <p>You receive a clean PDF report with practical insights in simple language.</p>
           </div>
 
-          <div class="step">
-            <div class="step-number">4</div>
-            <h4>Optional consultation</h4>
-            <p style="color: var(--muted); margin: 0;">Choose a deeper discussion for career, switch decisions, and money guidance.</p>
+          <div class="panel">
+            <h3>Step 4</h3>
+            <p>You can ask follow-up questions if you choose the deeper report option.</p>
           </div>
         </div>
       </div>
@@ -840,103 +624,50 @@
 
     <section class="section-lg" id="offers">
       <div class="container">
-        <h2 class="section-title">Choose your level of clarity</h2>
-        <p class="section-sub">Two simple offers. One to begin. One to go deep.</p>
+        <h2 class="section-title">Choose your starting point</h2>
+        <p class="section-sub">Start small or go deeper. Both options are simple.</p>
 
         <div class="pricing">
           <div class="price-card">
             <h3 class="price-title">Free Starter Report</h3>
-            <p class="price-note">A focused introduction for first-time users who want a starting point before going deeper.</p>
+            <p class="price-note">A quick starting point for people who want basic direction first.</p>
             <ul class="bullet-list">
-              <li>Natural strengths snapshot</li>
-              <li>Basic career direction indication</li>
-              <li>Useful for initial clarity</li>
+              <li>Strengths: Natural skills, leadership, consistency</li>
             </ul>
           </div>
 
           <div class="price-card featured">
             <div class="tag">₹249</div>
-            <h3 class="price-title">Core Career Report + Unlimited Questions for 5 Days</h3>
-            <p class="price-note">A luxury deep-dive report for those who want stronger clarity on direction, strengths, money patterns, obstacles, and timing.</p>
+            <h3 class="price-title">Core Career Report</h3>
+            <p class="price-note">For people who want stronger clarity on direction, money, obstacles, and timing.</p>
             <ul class="bullet-list">
-              <li><strong>Direction:</strong> Suitable and unsuitable career paths</li>
-              <li><strong>Strengths:</strong> Natural skills, leadership, responsibility, learning depth, persistence</li>
-              <li><strong>Growth:</strong> Career structure, role execution, pressure handling, stability</li>
-              <li><strong>Money:</strong> Income engine, gains, wealth support, leakage factors</li>
-              <li><strong>Timing:</strong> Running Dasha, transit impact, deeper career indicators</li>
-              <li><strong>Support:</strong> Unlimited follow-up questions for 5 days</li>
+              <li><strong>Career fit:</strong> suitable and less suitable paths</li>
+              <li><strong>Strengths:</strong> skills, leadership, learning, consistency</li>
+              <li><strong>Growth:</strong> work style, pressure handling, stability</li>
+              <li><strong>Money:</strong> earning patterns and support factors</li>
+              <li><strong>Timing:</strong> key periods and current phase insights</li>
+              <li><strong>Support:</strong> unlimited questions for 5 days</li>
             </ul>
           </div>
         </div>
-
-        <div class="panel" style="margin-top:20px;">
-          <h3>Delivery & accuracy</h3>
-          <ul class="bullet-list">
-            <li>Your PDF report is sent to your email within 24 hours after payment confirmation</li>
-            <li>Correct birth date, time, and place are essential for meaningful accuracy</li>
-          </ul>
-        </div>
       </div>
     </section>
 
-    <section class="section-lg" id="faq">
-      <div class="container split">
-        <div class="panel">
-          <h3>Why people trust this process</h3>
-          <p>
-            Because it is built on a structured analysis of multiple life factors that directly and indirectly shape career direction, growth potential, financial patterns, stability, and long-term outcomes.
-          </p>
-          <ul class="bullet-list">
-            <li>overall life foundation and personality</li>
-            <li>inner strength and long-term stability</li>
-            <li>career, profession, and public role</li>
-            <li>education, learning, and knowledge</li>
-            <li>wealth and financial potential</li>
-            <li>effort, courage, and competition</li>
-            <li>timing of important life periods</li>
-            <li>current planetary influences</li>
-            <li>strength and support across houses and planets</li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <h3>Where you can find us?</h3>
-          <ul class="bullet-list contact-list">
-            <li>
-              Instagram:
-              <a href="https://instagram.com/career_logic09" target="_blank" rel="noopener noreferrer">@career_logic09</a>
-            </li>
-            <li>
-              Email:
-              <a href="mailto:careerlogic.ai09@gmail.com">careerlogic.ai09@gmail.com</a>
-            </li>
-            <li>
-              WhatsApp:
-              <a href="https://wa.me/919607399090?text=Hello%20Career%20Logic,%20I%20want%20to%20know%20more%20about%20the%20report." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-            </li>
-            <li>
-              Phone:
-              <a href="tel:+919607399090">9607399090</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-lg">
+    <section class="section-lg" id="contact">
       <div class="container">
         <div class="cta">
-          <h2 class="section-title" style="margin-bottom: 10px;">Stop guessing. Start with clarity.</h2>
-          <p class="section-sub" style="margin: 0 auto 22px;">
-            Take the first step with a premium structured report designed to help you understand where you may truly fit and grow.
+          <h2 class="section-title" style="margin-bottom: 10px;">Start with clarity.</h2>
+          <p class="section-sub" style="margin: 0 auto 22px; max-width: 620px;">
+            Premium PDF delivery within 24 hours after payment confirmation, based on correct birth details.
           </p>
           <div class="cta-actions" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">
-              Get Started Now
-            </a>
+            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Started Now</a>
+            <a class="btn btn-secondary" href="https://wa.me/919607399090?text=Hello%20Career%20Logic,%20I%20want%20to%20know%20more%20about%20the%20report." target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
           </div>
-          <div class="muted-small" style="margin-top:16px;">
-            Premium PDF delivery within 24 hours after payment confirmation and correct birth details.
+          <div class="contact-links">
+            <a href="https://instagram.com/career_logic09" target="_blank" rel="noopener noreferrer">Instagram: @career_logic09</a>
+            <a href="mailto:careerlogic.ai09@gmail.com">Email: careerlogic.ai09@gmail.com</a>
+            <a href="tel:+919607399090">Phone: 9607399090</a>
           </div>
         </div>
       </div>
@@ -946,7 +677,7 @@
   <footer class="footer">
     <div class="container footer-text">
       <strong style="color: var(--primary-dark); font-size:1.02rem;">Career Logic</strong><br>
-      A premium clarity experience for people who do not want to waste their potential in the wrong direction.
+      A premium clarity experience for people who want better direction, not more confusion.
     </div>
   </footer>
 </body>
