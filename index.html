@@ -1,839 +1,1191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career Logic | Find the direction that truly fits you</title>
-  <meta name="description" content="Personalized career direction insights through structured astrological chart analysis." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #f5f8ff;
-      --white: #ffffff;
-      --text: #081b52;
-      --text-strong: #061342;
-      --muted: #5b6991;
-      --primary: #1b4fd6;
-      --primary-dark: #10389f;
-      --accent: #2dbb66;
-      --border: #dfe8ff;
-      --soft: #edf3ff;
-      --soft-2: #f4f7ff;
-      --shadow: 0 20px 60px rgba(16, 56, 159, 0.12);
-      --shadow-soft: 0 14px 38px rgba(16, 56, 159, 0.08);
-      --radius: 24px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(27, 79, 214, 0.06), transparent 28%),
-        linear-gradient(180deg, #fbfcff 0%, #f2f6ff 100%);
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(250, 252, 255, 0.88);
-      border-bottom: 1px solid rgba(223, 232, 255, 0.85);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 18px 0;
-    }
-
-    .brand {
-      font-weight: 900;
-      font-size: 2.45rem;
-      letter-spacing: -0.04em;
-      color: var(--primary-dark);
-      white-space: nowrap;
-    }
-
-    .brand span { color: var(--primary); }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 12px 20px;
-      font-weight: 800;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-      letter-spacing: -0.01em;
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, #3a72ff 100%);
-      color: #fff;
-      box-shadow: 0 16px 36px rgba(27, 79, 214, 0.25);
-    }
-
-    .btn-primary:hover,
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.95);
-      color: var(--primary-dark);
-      border-color: var(--border);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .section { padding: 34px 0; }
-    .section-lg { padding: 76px 0; }
-
-    .hero {
-      padding: 72px 0 48px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(180deg, #eef4ff 0%, #e7efff 100%);
-      color: var(--primary-dark);
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 0.94rem;
-      font-weight: 800;
-      line-height: 1.5;
-      margin-bottom: 18px;
-      border: 1px solid #dde7ff;
-      box-shadow: var(--shadow-soft);
-    }
-
-    h1 {
-      font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      margin: 0 0 18px;
-      color: var(--text-strong);
-      font-weight: 700;
-      max-width: 760px;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 660px;
-      margin: 0 0 24px;
-    }
-
-    .hero-actions,
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .mini-note {
-      margin-top: 12px;
-      font-size: 0.93rem;
-      color: var(--muted);
-    }
-
-    .hero-card,
-    .feature,
-    .panel,
-    .price-card,
-    .cta,
-    .marathi-strip {
-      background: var(--white);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      border-radius: 28px;
-    }
-
-    .hero-card {
-      padding: 30px;
-      background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(27,79,214,0.14) 0%, rgba(27,79,214,0) 72%);
-      right: -80px;
-      top: -80px;
-    }
-
-    .card-label {
-      position: relative;
-      z-index: 1;
-      font-size: 0.8rem;
-      font-weight: 900;
-      color: var(--primary);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    .hero-card h3 {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 16px;
-      font-size: 1.65rem;
-      line-height: 1.2;
-      color: var(--text-strong);
-      letter-spacing: -0.03em;
-    }
-
-    .hero-points {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-    }
-
-    .hero-points div {
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.95);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      font-weight: 700;
-      color: var(--text);
-      box-shadow: 0 10px 26px rgba(16, 56, 159, 0.06);
-    }
-
-    .section-title {
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin: 0 0 12px;
-      color: var(--text-strong);
-    }
-
-    .section-sub {
-      max-width: 700px;
-      color: var(--muted);
-      margin: 0 0 30px;
-      font-size: 1.02rem;
-    }
-
-    .grid-3,
-    .pricing {
-      display: grid;
-      gap: 20px;
-    }
-
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .pricing { grid-template-columns: repeat(2, 1fr); }
-
-    .feature,
-    .panel,
-    .price-card,
-    .cta,
-    .marathi-strip {
-      padding: 28px;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-    }
-
-    .feature span {
-      display: inline-flex;
-      width: 46px;
-      height: 46px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 14px;
-      background: var(--soft);
-      color: var(--primary-dark);
-      font-weight: 900;
-      margin-bottom: 14px;
-    }
-
-    .feature h4,
-    .panel h3,
-    .price-title {
-      margin: 0 0 10px;
-      color: var(--text-strong);
-      letter-spacing: -0.02em;
-    }
-
-    .feature p,
-    .panel p,
-    .price-note,
-    .footer-text,
-    .muted-small {
-      color: var(--muted);
-    }
-
-    .bullet-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .bullet-list li {
-      padding-left: 18px;
-      position: relative;
-      color: var(--muted);
-    }
-
-    .bullet-list li strong { color: var(--text); }
-
-    .bullet-list li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-      position: absolute;
-      left: 0;
-      top: 10px;
-    }
-
-    .simple-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .marathi-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-      background: linear-gradient(180deg, #fafdff 0%, #f4f8ff 100%);
-    }
-
-    .marathi-title {
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      line-height: 1.45;
-      color: var(--text-strong);
-      margin: 0 0 10px;
-    }
-
-    .founder-meta {
-      display: block;
-      margin-top: 4px;
-      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: var(--muted);
-    }
-
-    .marathi-text {
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.9;
-      margin: 0;
-    }
-
-    .price-card.featured {
-      border: 2px solid var(--primary);
-      transform: translateY(-8px);
-      box-shadow: 0 24px 60px rgba(27, 79, 214, 0.14);
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: #eef2fb;
-      color: var(--primary-dark);
-      font-size: 1.1rem;
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
-    }
-
-
-    .price-card .btn {
-      width: 100%;
-      margin-top: 18px;
-    }
-
-    .price-card {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .price-card .bullet-list {
-      flex-grow: 1;
-    }
-
-    .contact-links {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .contact-links a {
-      color: var(--primary);
-      font-weight: 700;
-      word-break: break-word;
-    }
-
-    .cta {
-      text-align: center;
-      border-radius: 30px;
-    }
-
-    .footer {
-      padding: 20px 0 42px;
-      text-align: center;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .grid-3,
-      .pricing,
-      .simple-grid,
-      .marathi-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links { display: none; }
-      .price-card.featured { transform: none; }
-      .hero { padding-top: 44px; }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(calc(100% - 24px), var(--max));
-      }
-
-      .nav-inner {
-        padding: 14px 0;
-        gap: 12px;
-      }
-
-      .brand {
-        font-size: 1.18rem;
-        line-height: 1.1;
-      }
-
-      .nav-inner .btn {
-        padding: 10px 14px;
-        font-size: 0.84rem;
-        min-width: 122px;
-      }
-
-      .hero {
-        padding: 24px 0 30px;
-      }
-
-      .eyebrow {
-        font-size: 0.86rem;
-        line-height: 1.55;
-        padding: 11px 14px;
-      }
-
-      h1 {
-        font-size: clamp(1.95rem, 8.5vw, 2.8rem);
-        line-height: 1.14;
-        margin-bottom: 14px;
-      }
-
-      .hero p,
-      .section-sub,
-      .marathi-text {
-        font-size: 0.96rem;
-        line-height: 1.8;
-      }
-
-      .hero-actions,
-      .cta-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .hero-actions .btn,
-      .cta-actions .btn {
-        width: 100%;
-      }
-
-      .hero-card,
-      .feature,
-      .panel,
-      .price-card,
-      .cta,
-      .marathi-strip {
-        padding: 20px 18px;
-        border-radius: 22px;
-      }
-
-      .tag {
-        font-size: 1rem;
-        padding: 9px 14px;
-      }
-
-      .hero-card h3 {
-        font-size: 1.28rem;
-      }
-
-      .section-lg {
-        padding: 42px 0;
-      }
-
-      .section-title {
-        font-size: 1.72rem;
-      }
-
-      .footer {
-        padding: 14px 0 34px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .brand { font-size: 1.05rem; }
-      .nav-inner .btn {
-        min-width: 114px;
-        padding: 9px 12px;
-        font-size: 0.8rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Career Logic — Find the Direction That Truly Fits You</title>
+<meta name="description" content="Stop wasting years on the wrong path. Get your personalized AI-powered career clarity report in 24 hours."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* ── Original brand palette ── */
+  --bg:           #f5f8ff;
+  --white:        #ffffff;
+  --text:         #081b52;
+  --text-strong:  #061342;
+  --muted:        #5b6991;
+  --muted2:       #8492b8;
+  --primary:      #1b4fd6;
+  --primary-dark: #10389f;
+  --primary-light:#3a72ff;
+  --accent:       #2dbb66;
+  --border:       #dfe8ff;
+  --soft:         #edf3ff;
+  --soft2:        #f4f7ff;
+  --red:          #e63946;
+
+  --shadow:      0 20px 60px rgba(16,56,159,0.12);
+  --shadow-soft: 0 14px 38px rgba(16,56,159,0.08);
+  --shadow-deep: 0 24px 64px rgba(16,56,159,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', 'Noto Sans Devanagari', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* subtle dot grid texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(27,79,214,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a { text-decoration: none; color: inherit; }
+.container { width: min(calc(100% - 40px), 1140px); margin: 0 auto; position: relative; z-index: 1; }
+
+/* ─── MARQUEE STRIP ─── */
+.strip {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--primary-dark));
+  overflow: hidden;
+  padding: 10px 0;
+  position: relative;
+  z-index: 10;
+}
+.strip-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+}
+.strip-track span {
+  padding: 0 32px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+}
+.strip-track span::after {
+  content: "◆";
+  margin-left: 32px;
+  opacity: 0.45;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,248,255,0.90);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(16,56,159,0.06);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 20px;
+}
+.brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.85rem;
+  letter-spacing: 0.06em;
+  color: var(--primary-dark);
+}
+.brand em { color: var(--primary); font-style: normal; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.nav-links a:hover { color: var(--primary); transition: color 0.2s; }
+.btn-nav {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(27,79,214,0.25);
+}
+.btn-nav:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(27,79,214,0.35); }
+
+/* ─── URGENCY BAR ─── */
+.urgency-bar {
+  background: linear-gradient(90deg, var(--soft), #e8efff, var(--soft));
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.84rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.urgency-bar strong { color: var(--primary-dark); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 90px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 1000px; height: 600px;
+  background: radial-gradient(ellipse at center, rgba(27,79,214,0.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-soft);
+}
+.hero-eyebrow::before { content: "◆"; font-size: 0.6rem; color: var(--primary); }
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  max-width: 820px;
+  color: var(--text-strong);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--primary);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+/* Primary button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary) 100%);
+  background-size: 200% auto;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 36px rgba(27,79,214,0.30);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(27,79,214,0.42);
+}
+
+/* Ghost / secondary button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 15px 28px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-soft);
+}
+.btn-ghost:hover {
+  background: var(--soft);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Social proof row */
+.social-proof {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.proof-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.proof-stat strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.85rem;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  line-height: 1;
+}
+.proof-stat span { font-size: 0.74rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.proof-divider { width: 1px; height: 36px; background: var(--border); }
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  padding: 20px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+.trust-items {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.trust-item span:first-child { font-size: 1.1rem; }
+
+/* ─── PAIN SECTION ─── */
+.pain {
+  padding: 80px 0;
+  background: var(--white);
+}
+.section-badge {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 4px;
+  margin-bottom: 20px;
+}
+.section-h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  color: var(--text-strong);
+}
+.section-h2 em { font-style: italic; color: var(--primary); }
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.pain-item {
+  padding: 32px 28px;
+  background: var(--soft2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.pain-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.pain-item:hover::before { transform: scaleX(1); }
+.pain-item:hover {
+  background: var(--soft);
+  border-color: rgba(27,79,214,0.25);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.pain-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+.pain-item h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--text-strong);
+}
+.pain-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+/* ─── BRIDGE ─── */
+.bridge {
+  padding: 70px 0;
+  text-align: center;
+  background: linear-gradient(180deg, var(--soft) 0%, var(--bg) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.bridge-arrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  color: var(--primary);
+  line-height: 1;
+  display: block;
+  margin-bottom: 16px;
+  animation: pulse-arrow 2s ease-in-out infinite;
+}
+@keyframes pulse-arrow {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50%       { opacity: 0.5; transform: translateY(6px); }
+}
+.bridge h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  max-width: 700px;
+  margin: 0 auto 16px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+.bridge h2 em { font-style: italic; color: var(--primary); }
+.bridge p { color: var(--muted); font-size: 0.95rem; max-width: 520px; margin: 0 auto; }
+
+/* ─── HOW IT WORKS ─── */
+.how { padding: 80px 0; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  position: relative;
+}
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 29px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  z-index: 0;
+}
+.step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+.step-num {
+  width: 58px; height: 58px;
+  background: var(--white);
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin: 0 auto 20px;
+  box-shadow: 0 0 0 6px var(--soft), var(--shadow-soft);
+}
+.step h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; color: var(--text-strong); }
+.step p  { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+/* ─── PRICING ─── */
+.pricing { padding: 80px 0; background: var(--white); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.p-card {
+  background: var(--soft2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.p-card:hover {
+  background: var(--soft);
+  border-color: rgba(27,79,214,0.30);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-deep);
+}
+.p-card.featured {
+  background: linear-gradient(160deg, #eef3ff 0%, #f4f8ff 100%);
+  border-color: rgba(27,79,214,0.35);
+  box-shadow: var(--shadow);
+}
+.p-card.featured::before {
+  content: "MOST POPULAR";
+  position: absolute;
+  top: 16px; right: -32px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  padding: 4px 52px;
+  transform: rotate(35deg);
+}
+
+.p-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  padding: 4px 16px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  line-height: 1.3;
+  box-shadow: 0 6px 18px rgba(27,79,214,0.22);
+}
+.p-tag.free {
+  background: linear-gradient(135deg, var(--accent), #22a85b);
+  box-shadow: 0 6px 18px rgba(45,187,102,0.25);
+}
+
+.p-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  color: var(--text-strong);
+}
+.p-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; line-height: 1.65; }
+.p-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+.p-list li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+.p-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 800;
+}
+.p-list li strong { color: var(--text); font-weight: 600; }
+
+.p-btn {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 13px 20px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(27,79,214,0.25);
+  margin-top: auto;
+}
+.p-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(27,79,214,0.38); }
+
+.p-btn.free-btn {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--primary-dark);
+  box-shadow: none;
+}
+.p-btn.free-btn:hover { background: var(--soft); border-color: var(--primary); }
+
+/* premium card special */
+.p-card.premium {
+  background: linear-gradient(160deg, #e8efff 0%, var(--soft) 100%);
+  border: 2px solid var(--primary);
+  box-shadow: 0 24px 64px rgba(27,79,214,0.18);
+}
+.p-card.premium .p-tag {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  font-size: 1.8rem;
+  box-shadow: 0 8px 24px rgba(16,56,159,0.30);
+}
+
+/* ─── EXAM BANNER ─── */
+.exam-banner {
+  background: linear-gradient(135deg, var(--soft) 0%, #e8f0ff 100%);
+  border: 1.5px solid rgba(27,79,214,0.2);
+  border-radius: 20px;
+  padding: 36px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  box-shadow: var(--shadow-soft);
+}
+.exam-banner h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.85rem;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+.exam-banner h3 em { font-style: italic; color: var(--primary); }
+.exam-banner p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px; }
+.exam-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+  list-style: none;
+}
+.exam-list li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-left: 18px;
+  position: relative;
+}
+.exam-list li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+.exam-list li strong { color: var(--text); }
+
+/* ─── FOUNDER ─── */
+.founder {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--soft2) 100%);
+  border-top: 1px solid var(--border);
+}
+.founder-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: center;
+}
+.founder-left {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: var(--shadow-soft);
+}
+.founder-quote {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-strong);
+  margin-bottom: 24px;
+}
+.founder-quote::before {
+  content: "\201C";
+  font-size: 3rem;
+  color: var(--primary);
+  line-height: 0;
+  vertical-align: -0.5em;
+  margin-right: 4px;
+}
+.founder-name { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text-strong); }
+.founder-role { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+.founder-marathi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.founder-insight {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+}
+.founder-insight p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+.founder-insight em { color: var(--primary); font-style: italic; }
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  padding: 100px 0;
+  text-align: center;
+  background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 60%, #3a72ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.final-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 820px;
+  margin: 0 auto 20px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.final-cta h2 em { font-style: italic; color: #a8c4ff; }
+.final-cta p { color: rgba(255,255,255,0.75); font-size: 1rem; max-width: 480px; margin: 0 auto 36px; position: relative; z-index: 1; }
+
+.cta-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: var(--primary-dark);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.2);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+
+.btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 15px 28px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.btn-ghost-white:hover { background: rgba(255,255,255,0.22); }
+
+.contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+.contact-row a {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.contact-row a:hover { color: #fff; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 28px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+footer p { font-size: 0.82rem; color: var(--muted); }
+footer strong { color: var(--primary-dark); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.08em; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s ease forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 980px) {
+  .pricing-grid  { grid-template-columns: repeat(2, 1fr); }
+  .pain-grid     { grid-template-columns: 1fr; }
+  .steps         { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .steps::before { display: none; }
+  .founder-inner { grid-template-columns: 1fr; }
+  .exam-banner   { grid-template-columns: 1fr; gap: 24px; }
+  .nav-links     { display: none; }
+}
+@media (max-width: 640px) {
+  .pricing-grid  { grid-template-columns: 1fr; }
+  .steps         { grid-template-columns: 1fr; }
+  .hero          { padding: 50px 0 40px; }
+  .hero h1       { font-size: 2.5rem; }
+  .social-proof  { gap: 16px; }
+  .proof-divider { display: none; }
+  .hero-cta-group, .cta-btns { flex-direction: column; align-items: stretch; }
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-ghost,
+  .cta-btns .btn-white,
+  .cta-btns .btn-ghost-white { text-align: center; justify-content: center; }
+  .exam-list     { grid-template-columns: 1fr; }
+  .trust-items   { gap: 16px; justify-content: flex-start; }
+  .contact-row   { gap: 14px; flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#top" class="brand">Career <span>Logic</span></a>
 
-      <nav class="nav-links">
-        <a href="#process">Process</a>
-        <a href="#Guidance Pack">Guidance Pack</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<!-- MARQUEE STRIP -->
+<div class="strip">
+  <div class="strip-track">
+    <span>CAREER CLARITY IN 24 HOURS</span>
+    <span>AI-POWERED charts ANALYSIS</span>
+    <span>FREE STARTER REPORT</span>
+    <span>STUDENTS · ASPIRANTS · PROFESSIONALS</span>
+    <span>FIND YOUR DIRECTION</span>
+    <span>CAREER CLARITY IN 24 HOURS</span>
+    <span>AI-POWERED charts ANALYSIS</span>
+    <span>FREE STARTER REPORT</span>
+    <span>STUDENTS · ASPIRANTS · PROFESSIONALS</span>
+    <span>FIND YOUR DIRECTION</span>
+  </div>
+</div>
 
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">CAREER <em>LOGIC</em></div>
+    <nav class="nav-links">
+      <a href="#pain">The Problem</a>
+      <a href="#pricing">Guidance Packs</a>
+      <a href="#process">How It Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="btn-nav">Start Free →</a>
+  </div>
+</header>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  ⚡ Premium Report delivered within <strong>24 hours</strong> · Based on your birth charts · <strong>Starter Report is 100% FREE</strong> — Start today
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Your meaningful career journey is our mission</div>
+    <h1 class="fade-up">Stop guessing.<br><em>Find the path</em><br>that was made for you.</h1>
+    <p class="hero-sub fade-up delay-1">Most people spend 3–7 years in the wrong direction before course-correcting. Our structured Multi-layered astrological charts analysis shows you where your natural strengths, growth potential, and true career fit actually lie.</p>
+    <div class="hero-cta-group fade-up delay-2">
+      <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="btn-primary">
+        Get Your Free Report →
+      </a>
+      <a href="#pricing" class="btn-ghost">See All Packs ↓</a>
+    </div>
+    <div class="social-proof fade-up delay-3">
+      <div class="proof-stat">
+        <strong>100%</strong>
+        <span>Personalized</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <strong>24H</strong>
+        <span>Report Delivery</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <strong>₹0</strong>
+        <span>Starter Report</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <strong>20+</strong>
+        <span>Domains Covered</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item"><span>🎓</span><span>School & College Students</span></div>
+      <div class="trust-item"><span>📋</span><span>Govt Exam Aspirants</span></div>
+      <div class="trust-item"><span>💻</span><span>IT & Working Professionals</span></div>
+      <div class="trust-item"><span>🔄</span><span>Career Switchers</span></div>
+      <div class="trust-item"><span>📄</span><span>Clean Report Report</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAIN SECTION -->
+<section class="pain" id="pain">
+  <div class="container">
+    <div class="section-badge">THE REAL PROBLEM</div>
+    <h2 class="section-h2">Most people choose careers<br><em>by accident.</em></h2>
+    <p style="font-family: 'Noto Sans Devanagari', sans-serif; color: var(--muted); max-width: 580px; font-size: 0.95rem; line-height: 1.9; margin-top: 10px;">आळशीपणामुळे नाही — तर कारण कोणी त्यांना एक structured, personalized नकाशाच दिला नाही. ते trend बघतात, घरच्यांचा दबाव असतो, किंवा जे safe वाटतं ते निवडतात — आणि वर्षांनंतर पश्चाताप होतो.</p>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <span class="pain-icon">😓</span>
+        <h4>Scattered preparation</h4>
+        <p style="font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.9;">"नक्की काय होईल माहित नाही" म्हणून ८ वेगळ्या परीक्षांचा अभ्यास करतोय. Focus शून्य, result शून्य. तुमचा competitor एकाच परीक्षेवर पूर्ण लक्ष देतोय — तुम्ही दहावर विभागलेले आहात.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🌀</span>
+        <h4>Wrong stream, wrong path</h4>
+        <p style="font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.9;">घरच्यांनी सांगितलं म्हणून Science घेतली. तीन वर्षांनंतर प्रत्येक subject नकोसा वाटतो. Stream बदलणं म्हणजे हार वाटते — पण तसंच राहणं आणखी वाईट आहे.</p>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">📉</span>
+        <h4>Stagnation at work</h4>
+        <p style="font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.9;">नोकरीत वर्षे गेली, growth थांबलीय, आणि मनात प्रश्न येतो — मी खरंच योग्य field मध्ये आहे का? Switch करावा का? की थांबावं? उत्तर कुठेच मिळत नाही.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section class="bridge">
+  <div class="container">
+    <span class="bridge-arrow">↓</span>
+    <h2>What if you had a <em>clear, structured map</em><br>of your actual potential?</h2>
+    <p>Career Logic analyzes your birth charts through a trained AI model — extracting specific career signals about your natural strengths, growth direction, and best-fit paths.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="process">
+  <div class="container">
+    <div class="section-badge">THE PROCESS</div>
+    <h2 class="section-h2">Four steps.<br><em>One clear direction.</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Share Birth Details</h4>
+        <p>Fill the simple form with your birth date, time, and place. Takes under 2 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>chartsAnalysis</h4>
+        <p>Our AI model analyzes your Multi-layered astrological chartsss — career houses, planetary positions, growth indicators.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Structured Report Report</h4>
+        <p>You receive a clean, organized report with practical career insights in simple language. Within 24 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Ask Follow-ups</h4>
+        <p>Premium plans include 1-to-1 consultation and direct answers to your specific career concerns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-badge">GUIDANCE PACKS</div>
+    <h2 class="section-h2">Choose your level<br>of <em>clarity.</em></h2>
+    <p style="color: var(--muted); max-width: 540px; font-size: 0.92rem; line-height: 1.75; margin-top: 12px;">Every report is built around your unique birth chartss. Pick the pack that matches where you are right now.</p>
+
+    <div class="pricing-grid">
+
+      <!-- FREE -->
+      <div class="p-card">
+        <div class="p-tag free">FREE</div>
+        <h3>Starter Report</h3>
+        <p class="p-desc">A thoughtful starting point. Understand your natural strengths and basic career direction — at zero cost.</p>
+        <ul class="p-list">
+          <li><strong>Natural Skills & Inherent Strengths</strong></li>
+          <li><strong>Basic Career Direction</strong></li>
+          <li><strong>One Key Growth Insight</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn free-btn">Get Free Report →</a>
+      </div>
+
+      <!-- POST 10th -->
+      <div class="p-card">
+        <div class="p-tag">₹49</div>
+        <h3>Post-10th Stream Clarity</h3>
+        <p class="p-desc">10th झाली — आता Stream दबावाने नाही, क्षमतेने निवडा. Know which stream actually aligns with your natural strengths.</p>
+        <ul class="p-list">
+          <li><strong>Science / Commerce / Arts</strong></li>
+          <li><strong>Diploma & ITI Path</strong></li>
+          <li><strong>Engineering / Medical Foundation</strong></li>
+          <li><strong>Design, Agriculture, Hotel Mgmt</strong></li>
+          <li><strong>Police & Paramedical Paths</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get Stream Clarity →</a>
+      </div>
+
+      <!-- POST 12th -->
+      <div class="p-card featured">
+        <div class="p-tag">₹149</div>
+        <h3>Post-12th Career Path Selector</h3>
+        <p class="p-desc">One right direction after 12th can change your entire future. Find the career path that was always meant for you.</p>
+        <ul class="p-list">
+          <li><strong>Engineering & Technology</strong></li>
+          <li><strong>Medical & Healthcare</strong></li>
+          <li><strong>Commerce & Finance</strong></li>
+          <li><strong>Arts, Humanities & Social Sciences</strong></li>
+          <li><strong>Law / Defence / Government</strong></li>
+          <li><strong>Design, Sports, Hospitality & more</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get Career Path →</a>
+      </div>
+
+      <!-- ENTRANCE EXAM -->
+      <div class="p-card">
+        <div class="p-tag">₹149</div>
+        <h3>Entrance Exam Success Report</h3>
+        <p class="p-desc">Scattered prep gives zero results. Focused prep on the right exam gives 100%. Know which entrance exam to bet everything on.</p>
+        <ul class="p-list">
+          <li><strong>JEE / MHT-CET / BITSAT</strong></li>
+          <li><strong>NEET UG · CLAT · NDA</strong></li>
+          <li><strong>NID DAT · UCEED · NIFT</strong></li>
+          <li><strong>CA Foundation · CSEET</strong></li>
+          <li><strong>CUET and more</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get Exam Clarity →</a>
+      </div>
+
+      <!-- IT -->
+      <div class="p-card">
+        <div class="p-tag">₹249</div>
+        <h3>IT Growth & Role Clarity</h3>
+        <p class="p-desc">For IT professionals stuck at a crossroads — right role? right domain? switch or stay? Technical or management track?</p>
+        <ul class="p-list">
+          <li><strong>Current Role Suitability</strong></li>
+          <li><strong>Best-Fit IT Domain</strong></li>
+          <li><strong>Switch or Stay Analysis</strong></li>
+          <li><strong>Technical vs Management Track</strong></li>
+          <li><strong>Business or Govt Exam Option</strong></li>
+          <li><strong>Long-Term Growth Strategy</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get IT Clarity →</a>
+      </div>
+
+      <!-- BASIC -->
+      <div class="p-card">
+        <div class="p-tag">₹199</div>
+        <h3>Basic Report</h3>
+        <p class="p-desc">Starter Report + one specific career question answered. Ideal for those with one key decision to make.</p>
+        <ul class="p-list">
+          <li><strong>Everything in Starter Report</strong></li>
+          <li><strong>Answer to 1 specific career question</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get Basic Report →</a>
+      </div>
+
+      <!-- ADVANCED -->
+      <div class="p-card featured">
+        <div class="p-tag">₹249</div>
+        <h3>Advanced Report</h3>
+        <p class="p-desc">The complete career clarity system. Deep structure, income analysis, obstacles, karmic influences — plus 3 questions answered.</p>
+        <ul class="p-list">
+          <li><strong>Deep Career Structure</strong></li>
+          <li><strong>Strongly Suitable & Unsuitable Paths</strong></li>
+          <li><strong>Leadership & Pressure Handling</strong></li>
+          <li><strong>Income Engine & Growth Potential</strong></li>
+          <li><strong>Wealth Blockages & Career Obstacles</strong></li>
+          <li><strong>Karmic Career Influences</strong></li>
+          <li><strong>Final Structured Career Summary</strong></li>
+          <li><strong>Answers to 3 career questions, which helps you make confident decisions</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn">Get Advanced Report →</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="p-card premium">
+        <div class="p-tag">₹499</div>
+        <h3>Premium Report <span style="color:var(--primary);">✦</span></h3>
+        <p class="p-desc">The full Advanced Report — plus a private 1-to-1 consultation. The highest level of career clarity Career Logic offers.</p>
+        <ul class="p-list">
+          <li><strong>Everything in Advanced Report</strong></li>
+          <li><strong>Private 1-to-1 Consultation</strong></li>
+          <li><strong>Direct expert conversation</strong></li>
+        </ul>
+        <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="p-btn" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary)); box-shadow: 0 8px 28px rgba(16,56,159,0.35);">Get Premium Report →</a>
+      </div>
 
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Your meaningful career journey is our mission</div>
-          <h1>Find the direction that fits you — before you lose years in the wrong one.</h1>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Start With Free Report</a>
-            <a class="btn btn-secondary" href="#why">Learn More</a>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="card-label">Why people choose Career Logic</div>
-          <div class="hero-points">
-            <div>तुम्हाला तुमची नैसर्गिक ताकद, योग्य दिशा आणि growth ची क्षमता समजून घेण्यास मदत करते.</div>
-            <div>चुकीच्या दिशेत वेळ आणि मेहनत वाया न घालवता, अधिक aligned career choices निवडण्यास मदत करते.</div>
-            <div>School Students, Jr/Sr College students, Aspirants, आणि Working professionals यांना Education, Exams, Career Direction, Job, किंवा Career Switch यांसारख्या महत्त्वाच्या decisions मध्ये अधिक स्पष्टता आणि योग्य दिशा देते.</div>
-          </div>
+    <!-- GOVERNMENT EXAM BANNER -->
+    <div class="exam-banner">
+      <div>
+        <div class="section-badge" style="margin-bottom: 16px;">GOVT EXAM ASPIRANTS</div>
+        <h3>Stop Chasing.<br><em>Start Clearing.</em></h3>
+        <p>Your competitor isn't preparing for 10 exams. Why are you? Focused aspirants beat scattered ones — every single time. Find your domain. Own your selection.</p>
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <span class="p-tag" style="margin: 0; font-size: 1.4rem;">Only ₹49</span>
+          <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="btn-primary" style="font-size: 0.9rem; padding: 13px 26px;">Find My Govt Domain →</a>
         </div>
       </div>
-    </section>
-
-    <section class="section-lg" id="offers">
-      <div class="container">
-        <h2 class="section-title">Choose Your Guidance Pack</h2>
-        <p class="section-sub">Our plans are thoughtfully created for both students and working professionals.</p>
-
-        <div class="pricing">
-          <div class="price-card">
-            <div class="tag">FREE</div>
-            <h3 class="price-title">Starter Report</h3>
-            <p class="price-note">A thoughtful starting point for people who want to discover more about themselves.</p>
-            <ul class="bullet-list">
-              <li><strong>Natural Skills & Inherent Strengths</strong></li>
-              <li><strong>Basic Career Direction</strong></li>
-              <li><strong>One Key Growth Insight</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Report</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">Only 49/-</div>
-            <h3 class="price-title">Government Exam Aspirants — Stop Chasing. Start Clearing.</h3>
-            <p class="price-note">Your competitor isn't preparing for 10 exams. Why are you? Focused aspirants beat scattered ones — every single time. Find your domain. Own your selection.</p>
-            <ul class="bullet-list">
-  
-              <li><strong>Civil Services</strong></li>
-              <li><strong>State Services</strong></li>
-              <li><strong>Defence</strong></li>
-              <li><strong>Police & Uniformed Services</strong></li>
-              <li><strong>SSC / Central Government Jobs</strong></li>
-              <li><strong>Banking & Finance</strong></li>
-              <li><strong>Railways</strong></li>
-              <li><strong>Teaching & Education</strong></li>
-              <li><strong>Revenue & Land Records</strong></li>
-              <li><strong>Rural Development</strong></li>
-              <li><strong>Judiciary & Legal</strong></li>
-              <li><strong>Medical & Health</strong></li>
-              <li><strong>Engineering Services</strong></li>
-              <li><strong>Forest / Agriculture / Environment</strong></li>
-              <li><strong>Clerical & Office Administration</strong></li>
-              <li><strong>Taxation / Customs / Audit</strong></li>
-              <li><strong>Postal Services</strong></li>
-              <li><strong>PSU / Government Enterprises</strong></li>
-              <li><strong>Intelligence & Investigation</strong></li>
-              <li><strong>Transport / Maritime / Aviation</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Government Job Domain</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">Only 49/-</div>
-            <h3 class="price-title">Post-10th Stream Clarity Pack</h3>
-            <p class="price-note">10th झाली — आता Stream दबावाने नाही — क्षमतेने निवडा.</p>
-            <ul class="bullet-list">
-              <li><strong>Science Stream</strong></li>
-              <li><strong>Commerce Stream</strong></li>
-              <li><strong>Arts</strong></li>
-              <li><strong>Diploma (Polytechnic)</strong></li>
-              <li><strong>ITI</strong></li>
-              <li><strong>Engineering Entrance Foundation Path</strong></li>
-              <li><strong>Medical Entrance Foundation Path</strong></li>
-              <li><strong>Architecture Entrance Foundation Path</strong></li>
-              <li><strong>Police Bharati</strong></li>
-              <li><strong>Hotel Management Foundation Path</strong></li>
-              <li><strong>Design / Animation Foundation Path</strong></li>
-              <li><strong>Agriculture Foundation Path</strong></li>
-              <li><strong>Paramedical / Pharmacy Foundation Path</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Stream</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">149/-</div>
-            <h3 class="price-title">Post-12th Career Path Selector</h3>
-            <p class="price-note">After 12th, One Right Direction Changes Your Entire Future. Now Choose the Career That Was Always Meant for You.</p>
-            <ul class="bullet-list">
-              <li><strong>Engineering & Technology Path</strong></li>
-              <li><strong>Medical & Healthcare Path</strong></li>
-              <li><strong>Commerce & Finance Path</strong></li>
-              <li><strong>Arts, Humanities & Social Sciences Path</strong></li>
-              <li><strong>Law Path</strong></li>
-              <li><strong>Government Services Path</strong></li>
-              <li><strong>Defence Services Path</strong></li>
-              <li><strong>Agriculture & Allied Sciences Path</strong></li>
-              <li><strong>Design & Creative Arts Path</strong></li>
-              <li><strong>Hospitality, Travel & Event Management Path</strong></li>
-              <li><strong>Aviation & Marine Path</strong></li>
-              <li><strong>Sports & Wellness Path</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Path</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">Only 149/-</div>
-            <h3 class="price-title">Entrance Exam Success Rate</h3>
-            <p class="price-note">Scattered Preparation Gives Zero Results — Focused Preparation on Right Exam Gives 100% success rate</p>
-            <ul class="bullet-list">
-              <li><strong>Engineering:</strong> JEE Main, JEE Advanced, MHT-CET, BITSAT, VITEEE, SRMJEEE, COMEDK, WBJEE, KCET, EAPCET, KEAM</li>
-              <li><strong>Medical:</strong> NEET UG</li>
-              <li><strong>General UG Admissions:</strong> CUET UG</li>
-              <li><strong>Law:</strong> CLAT, AILET, MH CET Law, SLAT</li>
-              <li><strong>Design/Fashion:</strong> NID DAT, UCEED, NIFTEE</li>
-              <li><strong>Defence:</strong> NDA</li>
-              <li><strong>Agriculture:</strong> CUET (ICAR-UG)</li>
-              <li><strong>Hospitality:</strong> NCHM JEE</li>
-              <li><strong>Marine:</strong> IMU CET</li>
-              <li><strong>Commerce Professional:</strong> CA Foundation, CSEET, CMA Foundation</li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Your Suitable Exam</a>
-          </div>
-          
-          <div class="price-card featured">
-            <div class="tag">Only 249/-</div>
-            <h3 class="price-title">IT Growth & Role Clarity Report</h3>
-            <p class="price-note">A focused report for IT professionals who want to know whether they are in the right role, which IT domain suits them best, and what career decisions can create better long-term growth.</p>
-            <ul class="bullet-list">
-              <li><strong>Current Role Suitability</strong></li>
-              <li><strong>Best-Fit IT Domain Identification</strong></li>
-              <li><strong>Switch or Stay in the Same Organization</strong></li>
-              <li><strong>Leaving Job and Starting a Business</strong></li>
-              <li><strong>Long-Term Career Growth Strategy</strong></li>
-              <li><strong>Technical Role vs Management Role</strong></li>
-              <li><strong>Leaving Job for Government Exam Preparation</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Clarity</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">₹199/-</div>
-            <h3 class="price-title">Basic Report</h3>
-            <p class="price-note">Starter Report + Solutions to any one career related questions/concerns.</p>
-            <ul class="bullet-list">
-              <li><strong>Everything in Starter Report and</strong></li>
-              <li><strong>Solutions to any one questions/concerns</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Report</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">₹249/-</div>
-            <h3 class="price-title">Advanced Report</h3>
-            <p class="price-note">A structured core report for people who want serious clarity about their path, growth, and potential + Solutions to any three career related questions/concerns</p>
-            <ul class="bullet-list">
-              <li><strong>Natural Skills & Inherent Strengths</strong></li>
-              <li><strong>Deep Career Structure</strong></li>
-              <li><strong>Strongly Suitable Career Paths</strong></li>
-              <li><strong>Strongly Unsuitable Career Path</strong></li>              
-              <li><strong>Authority & Leadership Orientation</strong></li>
-              <li><strong>Role Execution & Pressure Handling</strong></li>
-              <li><strong>Responsibility & Ownership Readiness</strong></li>
-              <li><strong>Education, Learning Depth & Skill-Building Support</strong></li>
-              <li><strong>Effort, Competition & Persistence Capacity</strong></li>
-              <li><strong>Income Engine & Growth Potential</strong></li>
-              <li><strong>Sustainability & Long-Term Stability</strong></li>
-              <li><strong>Luck, Gains & Wealth Activation Factors</strong></li>
-              <li><strong>Career Obstacles, Money Leakage & Wealth Blockages</strong></li>
-              <li><strong>Deeper Karmic Career Influence</strong></li>
-              <li><strong>Final Structured Career Summary</strong></li>
-              <li><strong>Career Decisions: Solutions to any three questions/concerns</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Report</a>
-          </div>
-
-          <div class="price-card featured">
-            <div class="tag">₹499/-</div>
-            <h3 class="price-title">Premium Report</h3>
-            <p class="price-note">A premium career clarity experience that combines a structured Advanced Report with personalized 1-to-1 consultation.</p>
-            <ul class="bullet-list">
-              <li><strong>Everything in Advanced Report and</strong></li>
-              <li><strong>One to one Consultation</strong></li>
-            </ul>
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Report</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-
-    <section class="section-lg" id="process">
-      <div class="container">
-        <h2 class="section-title">How it works</h2>
-        <p class="section-sub">A short process designed to keep things easy and premium.</p>
-
-        <div class="simple-grid">
-          <div class="panel">
-            <h3>Step 1</h3>
-            <p>Share your birth date, birth time, and birth place through the form.</p>
-          </div>
-
-          <div class="panel">
-            <h3>Step 2</h3>
-            <p>Your astrological charts are analyzed with a focus on career, growth, and future direction by a trained AI model to generate a structured report and provide clear answers to your questions.</p>
-          </div>
-
-          <div class="panel">
-            <h3>Step 3</h3>
-            <p>You receive a clean PDF report with practical insights in simple language.</p>
-          </div>
-
-          <div class="panel">
-            <h3>Step 4</h3>
-            <p>You can ask follow-up questions if you choose the deeper report option.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-lg">
-      <div class="container marathi-strip">
-        <div>
-          <p class="marathi-title">Piyush Bhosale, Founder<span class="founder-meta">(B.E. Mechanical, Working in a Top IT MNC)</span></p>
-          <p class="marathi-text">
-             माझे vision असे आहे की लोकांनी केवळ career निवडू नये, तर त्यांच्या स्वभाव, क्षमता आणि growth potential ला खऱ्या अर्थाने suit होणारी दिशा निवडून आनंदी आणि यशस्वी जीवन घडवावे
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-lg" id="contact">
-      <div class="container">
-        <div class="cta">
-          <h2 class="section-title" style="margin-bottom: 10px;">Start with clarity.</h2>
-          <p class="section-sub" style="margin: 0 auto 22px; max-width: 620px;">
-            Premium PDF delivery within 24 hours after payment confirmation, based on correct birth details.
-          </p>
-          <div class="cta-actions" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" rel="noopener noreferrer">Get Started Now</a>
-            <a class="btn btn-secondary" href="https://wa.me/919607399090?text=Hello%20Career%20Logic,%20I%20want%20to%20know%20more%20about%20the%20report." target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
-          </div>
-          <div class="contact-links">
-            <a href="https://instagram.com/career_logic09" target="_blank" rel="noopener noreferrer">Instagram: @career_logic09</a>
-            <a href="mailto:careerlogic.ai09@gmail.com">Email: careerlogic.ai09@gmail.com</a>
-            <a href="tel:+919607399090">Phone: 9607399090</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-text">
-      <strong style="color: var(--primary-dark); font-size:1.02rem;">Career Logic</strong><br>
-      Your meaningful career journey is our mission.
+      <ul class="exam-list">
+        <li><strong>Civil Services</strong></li>
+        <li><strong>State Services</strong></li>
+        <li><strong>Defence</strong></li>
+        <li><strong>Police & Uniformed</strong></li>
+        <li><strong>Banking & Finance</strong></li>
+        <li><strong>SSC / Central Govt</strong></li>
+        <li><strong>Railways</strong></li>
+        <li><strong>Teaching & Education</strong></li>
+        <li><strong>Judiciary & Legal</strong></li>
+        <li><strong>Revenue & Land Records</strong></li>
+        <li><strong>Medical & Health</strong></li>
+        <li><strong>Engineering Services</strong></li>
+        <li><strong>PSU / Govt Enterprises</strong></li>
+        <li><strong>Intelligence & Investigation</strong></li>
+        <li><strong>Forest / Agriculture</strong></li>
+        <li><strong>Taxation / Customs / Audit</strong></li>
+        <li><strong>Transport / Aviation</strong></li>
+        <li><strong>Rural Development</strong></li>
+      </ul>
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="container founder-inner">
+    <div class="founder-left">
+      <p class="founder-quote">
+        लोकांनी केवळ career निवडू नये, तर त्यांच्या स्वभाव, क्षमता आणि growth potential ला खऱ्या अर्थाने suit होणारी दिशा निवडून आनंदी आणि यशस्वी जीवन घडवावे.
+      </p>
+      <p class="founder-name">Piyush Bhosale</p>
+      <p class="founder-role">Founder, Career Logic · B.E. Mechanical · Working in a Top IT MNC</p>
+    </div>
+    <div>
+      <div class="section-badge">THE VISION</div>
+      <h2 class="section-h2" style="font-size: clamp(1.6rem, 3vw, 2.6rem); margin-bottom: 20px;">Built by someone who<br><em>understands the confusion.</em></h2>
+      <p class="founder-marathi">Career Logic was built with a single mission: that people should not just choose a career — but choose one that truly aligns with their nature, capacity, and growth potential. One that leads to a happy and successful life.</p>
+      <div class="founder-insight">
+        <p>The intersection of ancient chartswisdom and modern AI analysis creates a clarity tool that's both deeply personalized and structurally sound — not generic advice, not guesswork. <em>Your specific chartss. Your specific direction.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <h2>Your career clarity<br>is <em>24 hours away.</em></h2>
+    <p>Start with the free report. No risk. No payment required. Just your birth details and a clear starting point.</p>
+    <div class="cta-btns">
+      <a href="https://forms.gle/WwLNYQQVDJ9MNw4R9" target="_blank" class="btn-white" style="font-size: 1.05rem; padding: 18px 40px;">
+        Start With Free Report →
+      </a>
+      <a href="https://wa.me/919607399090?text=Hello%20Career%20Logic,%20I%20want%20to%20know%20more%20about%20the%20report." target="_blank" class="btn-ghost-white">
+        💬 WhatsApp Us
+      </a>
+    </div>
+    <div class="contact-row">
+      <a href="https://instagram.com/career_logic09" target="_blank">📸 @career_logic09</a>
+      <a href="mailto:careerlogic.ai09@gmail.com">✉️ careerlogic.ai09@gmail.com</a>
+      <a href="tel:+919607399090">📞 9607399090</a>
+    </div>
+    <p style="margin-top: 28px; font-size: 0.78rem; color: rgba(255,255,255,0.45); position: relative; z-index: 1;">Premium Report delivered within 24 hours after payment confirmation, based on correct birth details.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><strong>CAREER LOGIC</strong></p>
+    <p style="margin-top: 6px;">Your meaningful career journey is our mission.</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeUp 0.6s ease forwards';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.p-card, .step, .pain-item').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+
 </body>
 </html>
